@@ -20,7 +20,14 @@ test("Run browserstack tests", function (t) {
 	};
 
 	runTests([resolve(playgroundPath, "tape-test.js")], config).done(function (report) {
-		var data = report[0].suites;
+		var data;
+
+		if (!report[0]) {
+			t.fail("BrowserStack reported no tests");
+			t.end();
+			return;
+		}
+		data = report[0].suites;
 
 		t.equal(data.passed, 1);
 		t.equal(data.failed, 1);
