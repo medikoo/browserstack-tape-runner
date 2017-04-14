@@ -1,5 +1,5 @@
 # browserstack-tape-runner
-## Run tests configured with [tape](https://github.com/substack/tape) in browsers via browserstack
+## Run tests configured with [tape](https://github.com/substack/tape) in browsers via [BrowserStack](https://browserstack.com)
 
 <a href="https://browserstack.com"><img src="https://bstacksupport.zendesk.com/attachments/token/Pj5uf2x5GU9BvWErqAr51Jh2R/?name=browserstack-logo-600x315.png" height="150" /></a>
 
