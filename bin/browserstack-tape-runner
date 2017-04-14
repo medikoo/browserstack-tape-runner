@@ -76,7 +76,14 @@ deferred.map(argv._, glob).invoke(flatten)(function (files) {
 }).done(function (report) {
 	var failed = [];
 
-	process.stdout.write(JSON.stringify(report, null, 2) + "\n");
+	// eslint-disable-next-line no-console
+	console.log(report);
+
+	if (!report.forEach) {
+		process.stderr.write("Error: Unexpected report result");
+		process.exit(1);
+		return;
+	}
 
 	report.forEach(function (testReport) {
 		if (testReport.suites.failed) failed.push(testReport.browser);
