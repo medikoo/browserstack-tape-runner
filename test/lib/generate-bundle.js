@@ -2,7 +2,6 @@
 
 var Deferred       = require("deferred")
   , resolve        = require("path").resolve
-  , unlink         = Deferred.promisify(require("fs").unlink)
   , test           = require("tape")
   , generateBundle = require("../../lib/generate-bundle");
 
