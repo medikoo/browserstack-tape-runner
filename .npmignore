@@ -1,0 +1,6 @@
+/.vscode
+/coverage
+/node_modules
+/appveyor.yml
+/circle.yml
+/wallaby.js

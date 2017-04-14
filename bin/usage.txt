@@ -1,0 +1,17 @@
+browserstack-tape-runner v${ VERSION } - Runs tape tests in browsers via browserstack
+
+Usage: browserstack-tape-runner [options] <files>
+
+Options:
+
+    --version, -v  Display version
+    --help,    -h  Show this message
+
+	  --name     -n  Project name, if not provided it's read from eventual package.json (from working
+		               directory) otherwise not set.
+    --config   -c  Path to eventual browserstack config file. If not provided it's read from
+		               eventual package.json (from working directory). If not provided and not found
+									 in package.json program aborts with error
+	  --build    -b  Build name, if not provied it's read from environment variables (popular CI providers are
+		               automatically detected). Otherwise not set
+
