@@ -4,3 +4,4 @@
 /appveyor.yml
 /circle.yml
 /wallaby.js
+/test.index.js
