@@ -9,14 +9,16 @@ test("Run browserstack tests", function (t) {
 
 	var config = {
 		project: "browserstack-tape-runner-test",
-		browsers: [{
-			browser: "chrome",
-			// eslint-disable-next-line camelcase
-			browser_version: "latest",
-			os: "OS X",
-			// eslint-disable-next-line camelcase
-			os_version: "Sierra"
-		}]
+		browsers: [
+			{
+				browser: "chrome",
+				// eslint-disable-next-line camelcase
+				browser_version: "latest",
+				os: "OS X",
+				// eslint-disable-next-line camelcase
+				os_version: "Sierra"
+			}
+		]
 	};
 
 	runTests([resolve(playgroundPath, "tape-test.js")], config).done(function (report) {
