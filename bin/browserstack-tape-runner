@@ -4,22 +4,22 @@
 
 Error.stackTraceLimit = Infinity;
 
-var flatten       = require("es5-ext/array/#/flatten")
-  , assign        = require("es5-ext/object/assign")
-  , deferred      = require("deferred")
-  , glob          = deferred.promisify(require("glob"), 1)
-  , resolve       = require("path").resolve
-  , readFileSync  = require("fs").readFileSync
-  , argv          = require("minimist")(process.argv.slice(2))
-  , meta          = require("../package")
-  , runTests      = require("../")
+var flatten      = require("es5-ext/array/#/flatten")
+  , assign       = require("es5-ext/object/assign")
+  , deferred     = require("deferred")
+  , glob         = deferred.promisify(require("glob"), 1)
+  , resolve      = require("path").resolve
+  , readFileSync = require("fs").readFileSync
+  , argv         = require("minimist")(process.argv.slice(2))
+  , meta         = require("../package")
+  , runTests     = require("../");
 
-	, targetPath = process.cwd()
-  , env = process.env, config = {}, targetMeta;
+var targetPath = process.cwd(), env = process.env, config = {}, targetMeta;
 
 var usage = function () {
-	return readFileSync(resolve(__dirname, "usage.txt"), "utf8")
-		.replace("${ VERSION }", meta.version);
+	return readFileSync(resolve(__dirname, "usage.txt"), "utf8").replace(
+		"${ VERSION }", meta.version
+	);
 };
 
 if (argv.h || argv.help) {
@@ -47,9 +47,11 @@ if (argv.c || argv.config) {
 } else if (targetMeta && targetMeta.browserstack) {
 	assign(config, targetMeta.browserstack);
 } else {
-	process.stderr.write("Error: Browserstack config missing\n" +
-		"       It should be provided either via '--config' option or " +
-		"be placed in package.json of a project\n\n");
+	process.stderr.write(
+		"Error: Browserstack config missing\n" +
+			"       It should be provided either via '--config' option or " +
+			"be placed in package.json of a project\n\n"
+	);
 	process.stderr.write(usage());
 	process.exit(1);
 }
@@ -64,31 +66,34 @@ if (argv.b || argv.build) {
 } else if (env.TRAVIS) {
 	config.build = env.TRAVIS_TAG || env.TRAVIS_PULL_REQUEST || env.TRAVIS_COMMIT;
 } else if (env.APPVEYOR) {
-	config.build = env.APPVEYOR_REPO_TAG_NAME || env.APPVEYOR_PULL_REQUEST_NUMBER ||
-		env.APPVEYOR_REPO_COMMIT;
+	config.build =
+		env.APPVEYOR_REPO_TAG_NAME || env.APPVEYOR_PULL_REQUEST_NUMBER || env.APPVEYOR_REPO_COMMIT;
 }
 
 // Note: BROWSERSTACK_USERNAME and BROWSERSTACK_KEY
 // If not passed with with config, must be set in your environment for test to run succesfully
 
-deferred.map(argv._, glob).invoke(flatten)(function (files) {
-	return runTests(files, config);
-}).done(function (report) {
-	var failed = [];
+deferred
+	.map(argv._, glob)
+	.invoke(flatten)(function (files) {
+		return runTests(files, config);
+	})
+	.done(function (report) {
+		var failed = [];
 
-	// eslint-disable-next-line no-console
-	console.log(report);
+		// eslint-disable-next-line no-console
+		console.log(report);
 
-	if (!report.forEach) {
-		process.stderr.write("Error: Unexpected report result");
+		if (!report.forEach) {
+			process.stderr.write("Error: Unexpected report result");
+			process.exit(1);
+			return;
+		}
+
+		report.forEach(function (testReport) {
+			if (testReport.suites.failed) failed.push(testReport.browser);
+		});
+		if (!failed.length) return;
+		process.stderr.write("Error: Test failed for: " + failed.join(", ") + "\n");
 		process.exit(1);
-		return;
-	}
-
-	report.forEach(function (testReport) {
-		if (testReport.suites.failed) failed.push(testReport.browser);
 	});
-	if (!failed.length) return;
-	process.stderr.write("Error: Test failed for: " + failed.join(", ") + "\n");
-	process.exit(1);
-});
