@@ -7,7 +7,7 @@ var aFrom           = require("es5-ext/array/from")
   , runBrowserstack = promisify(require("browserstack-runner").run)
   , generateBundle  = require("./lib/generate-bundle");
 
-module.exports = function (filenames/* , config*/) {
+module.exports = function (filenames /* , config*/) {
 	var config = toPlainObject(arguments[1]);
 
 	return generateBundle(aFrom(ensureObject(filenames)))(function (data) {
