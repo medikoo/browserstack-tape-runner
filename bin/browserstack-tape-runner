@@ -40,7 +40,7 @@ if (argv.v || argv.version) {
 
 try {
 	targetMeta = require(resolve(targetPath, "package.json"));
-} catch (ignore) {}
+} catch (ok) {}
 
 if (argv.c || argv.config) {
 	assign(config, require(resolve(targetPath, argv.c || argv.config)));
