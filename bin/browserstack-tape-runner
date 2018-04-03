@@ -68,6 +68,8 @@ if (argv.b || argv.build) {
 } else if (env.APPVEYOR) {
 	config.build =
 		env.APPVEYOR_REPO_TAG_NAME || env.APPVEYOR_PULL_REQUEST_NUMBER || env.APPVEYOR_REPO_COMMIT;
+} else if (env.SEMAPHORE) {
+	config.build = env.BRANCH_NAME || env.REVISION;
 }
 
 // Note: BROWSERSTACK_USERNAME and BROWSERSTACK_KEY
