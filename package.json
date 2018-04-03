@@ -12,6 +12,7 @@
     "browserstack-tape-reporter": "^1.1",
     "deferred": "^0.7.9",
     "es5-ext": "^0.10.42",
+    "fs2": "^0.2.7",
     "glob": "^7.1.2",
     "minimist": "^1.2"
   },
