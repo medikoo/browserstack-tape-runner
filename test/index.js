@@ -21,7 +21,9 @@ test("Run browserstack tests", function (t) {
 		]
 	};
 
-	runTests([resolve(playgroundPath, "tape-test.js")], config).done(function (report) {
+	runTests(playgroundPath, [resolve(playgroundPath, "tape-test.js")], config).done(function (
+		report
+	) {
 		var data;
 
 		if (!report[0]) {
@@ -34,5 +36,6 @@ test("Run browserstack tests", function (t) {
 		t.equal(data.passed, 1);
 		t.equal(data.failed, 1);
 		t.end();
-	}, t.end);
+	},
+	t.end);
 });

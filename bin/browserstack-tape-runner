@@ -78,7 +78,7 @@ if (argv.b || argv.build) {
 deferred
 	.map(argv._, glob)
 	.invoke(flatten)(function (files) {
-		return runTests(files, config);
+		return runTests(process.cwd(), files, config);
 	})
 	.done(function (report) {
 		var failed = [];
