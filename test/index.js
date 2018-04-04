@@ -7,19 +7,7 @@ var resolve  = require("path").resolve
 test("Run browserstack tests", function (t) {
 	var playgroundPath = resolve(__dirname, "_playground");
 
-	var config = {
-		project: "browserstack-tape-runner-test",
-		browsers: [
-			{
-				browser: "chrome",
-				// eslint-disable-next-line camelcase
-				browser_version: "latest",
-				os: "OS X",
-				// eslint-disable-next-line camelcase
-				os_version: "Sierra"
-			}
-		]
-	};
+	var config = { project: "browserstack-tape-runner-test", browsers: ["chrome_latest"] };
 
 	runTests(playgroundPath, [resolve(playgroundPath, "tape-test.js")], config).done(function (
 		report
