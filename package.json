@@ -3,18 +3,9 @@
   "version": "2.0.0",
   "description": "Run tape tests in browsers via browserstack",
   "author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
-  "keywords": [
-    "test",
-    "browserstack",
-    "tape"
-  ],
-  "bin": {
-    "browserstack-tape-runner": "./bin/browserstack-tape-runner"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/medikoo/browserstack-tape-runner.git"
-  },
+  "keywords": ["test", "browserstack", "tape"],
+  "bin": { "browserstack-tape-runner": "./bin/browserstack-tape-runner" },
+  "repository": { "type": "git", "url": "git://github.com/medikoo/browserstack-tape-runner.git" },
   "dependencies": {
     "browserify": "^16.1.1",
     "browserstack-runner": "^0.7",
@@ -32,16 +23,11 @@
     "tape": "^4.9",
     "tape-index": "2"
   },
-  "eslintConfig": {
-    "extends": "medikoo-es5",
-    "root": true,
-    "env": {
-      "node": true
-    }
-  },
+  "eslintConfig": { "extends": "medikoo-es5", "root": true, "env": { "node": true } },
   "scripts": {
     "coverage": "tape-index && istanbul cover test.index.js",
-    "check-coverage": "npm run coverage && istanbul check-coverage --statements -2 --function -1 --branches 100 --lines -2",
+    "check-coverage":
+      "npm run coverage && istanbul check-coverage --statements -2 --function -1 --branches 100 --lines -2",
     "lint": "eslint --ignore-path=.gitignore .",
     "test": "tape-index && node test.index.js"
   },
