@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/medikoo/browserstack-tape-runner/compare/v2.0.0...v3.0.0) (2019-02-01)
+
+
+### Features
+
+* upgrade to browserstack-runner at v0.9 ([6db412f](https://github.com/medikoo/browserstack-tape-runner/commit/6db412f))
+
+
+### BREAKING CHANGES
+
+* Upgrade browserstack-runner at v0.9
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/medikoo/browserstack-tape-runner/compare/v1.0.1...v2.0.0) (2018-04-09)
 
