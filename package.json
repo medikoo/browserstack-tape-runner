@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "browserify": "^16.1.1",
-    "browserstack-runner": "^0.7",
+    "browserstack-runner": "^0.9",
     "browserstack-tape-reporter": "^1.1",
     "deferred": "^0.7.9",
     "es5-ext": "^0.10.42",
